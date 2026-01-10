@@ -1,0 +1,101 @@
+/* Mobile Phones */
+@media (max-width: 430px){
+
+     .logo{
+        font-size: 18px!important;
+      }
+    .search-container{
+       margin: auto;
+        width: auto!important;
+}
+ .nav-links,
+  .more-box {
+    display: none !important;
+  }
+    .navbar {
+    padding: 12px 20px;
+    gap: 15px;
+  }
+   
+   .menu-icon-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cardHeading{
+    font-size: 20px!important;
+  }
+   .card img{
+    width: 120px;
+    height: auto;
+  }
+  .card{
+    width: 150px;
+    height: auto;
+  } 
+  .auto-slide-section{
+   display: flex;
+}
+.auto-slide-section{
+  display: block;
+  width: auto;
+}
+.card-img{
+width: 150px!important;
+height: 150px!important;
+}
+.back-btn-container{
+  width: 200px;
+  display: flex;
+  margin: auto;
+}
+.back-home{
+  font-size: 12px!important;
+  margin: auto;
+}
+.anime-details{
+  display: block;
+}
+.anime-image{
+  width: 55%!important;
+  height: auto!important;
+}
+.anime-info-h{
+  font-size: 25px!important;
+}
+.anime-info-p{
+  font-size: 16px!important;
+}
+.anime-videos{
+  display: block!important;
+}
+.anime-videos-h{
+  font-size: 25px!important;
+}
+.video-card{
+  width: auto!important;
+  height: auto!important;
+}
+.anime-video{
+  width: 100%!important;
+  height: auto!important;
+}
+}
+
+/* Tablets */
+@media (max-width: 820px){
+ .nav-links,
+  .more-box {
+    display: none !important;
+  }
+  .anime-details{
+  display: block;
+}
+}
+
+@media (min-width: 430px){
+   .navbar {
+    padding: 12px 20px!important;
+    gap: 15px!important;
+  }
+ }
