@@ -1,7 +1,7 @@
 // PopularMovies.jsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/naveContent.css"; 
+import "../NavBarComponentsCss/naveContent.css"; 
 
 const PopularMovies = () => {
   const [popularMovies, setPopularMovies] = useState([]);

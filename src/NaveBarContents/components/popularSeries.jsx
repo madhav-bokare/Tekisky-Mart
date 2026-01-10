@@ -1,7 +1,7 @@
 // MostPopular.jsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../CSS/naveContent.css"; 
+import "../NavBarComponentsCss/naveContent.css"; 
 
 const MostPopular = () => {
   const [mostPopular, setMostPopular] = useState([]);
