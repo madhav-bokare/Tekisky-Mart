@@ -7,35 +7,31 @@ const Navbar = ({ setQuery = () => {} }) => {
 
   return (
     <>
-      {/* ===== TOP NAVBAR ===== */}
+    {/* Desktop / Tablet Links */}
       <nav className="navbar">
-        <div className="logo">✦ Anime Library</div>
+        <div className="logo">✦ Books Library</div>
 
         <div className="nav-links">
-          <Link
-            to="/"
-            className={location.pathname === "/" ? "active-link" : ""}
-          >
+          <Link to="/" className={location.pathname === "/" ? "active-link" : ""}>
             Home
           </Link>
 
           <Link
-            to="/popular-series"
-            className={location.pathname === "/popular-series" ? "active-link" : ""}
+            to="/free-books"
+            className={location.pathname === "/free-books" ? "active-link" : ""}
           >
-            Popular Series
+            Free Books
           </Link>
 
           <Link
-            to="/popular-movies"
-            className={
-              location.pathname === "/popular-movies" ? "active-link" : ""
-            }
+            to="/paid-books"
+            className={location.pathname === "/paid-books" ? "active-link" : ""}
           >
-            Popular Movies
+            Paid Books
           </Link>
         </div>
 
+        {/* Search */}
         <div className="search-container">
           <input
             type="search"
@@ -44,6 +40,40 @@ const Navbar = ({ setQuery = () => {} }) => {
           />
         </div>
       </nav>
+        <nav className="navbar-mobile">
+
+      {/* Mobile  */}
+      <div className="mobile-top">
+        <div className="logo">✦ Books Library</div>
+        <div className="mobile-search-container">
+          <input
+            type="search"
+            placeholder="Search..."
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+      </div>
+
+      {/* Buttons row: Free / Paid */}
+      <div className="mobile-links">
+  
+          <Link to="/" className={location.pathname === "/" ? "active-link" : ""}>
+            Home
+          </Link>
+        <Link
+          to="/free-books"
+          className={location.pathname === "/free-books" ? "active-link" : ""}
+        >
+          Free Books
+        </Link>
+        <Link
+          to="/paid-books"
+          className={location.pathname === "/paid-books" ? "active-link" : ""}
+        >
+          Paid Books
+        </Link>
+      </div>
+    </nav>
     </>
   );
 };

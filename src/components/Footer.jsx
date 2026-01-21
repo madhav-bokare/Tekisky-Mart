@@ -7,10 +7,10 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section about">
-          <h2 className="footer-section-about-h2">About AnimeWorld</h2>
+          <h2 className="footer-section-about-h2">About Book World</h2>
           <p className="footer-section-about-p">
-            AnimeWorld brings you the ultimate collection of popular, trending,
-            and most-loved anime. Stay connected and explore new adventures every day!
+            Book World brings you the ultimate collection of popular, trending,
+            and most-loved books. Stay connected and explore new adventures every day!
           </p>
         </div>
 
@@ -18,8 +18,8 @@ const Footer = () => {
           <h2 className="footer-section-about-h2">Quick Links</h2>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/categories">Popular Series</Link></li>
-            <li><Link to="/popular-movies">Popular Movies</Link></li>
+            <li><Link to="/free-books">Free Books</Link></li>
+            <li><Link to="/paid-books">Paid Books</Link></li>
             <li><Link to="/contact">Contact Us</Link></li>
           </ul>
         </div>
@@ -37,7 +37,7 @@ const Footer = () => {
 
       <div className="footer-bottom">
         <p className="footer-bottom-a">
-          &copy; 2025 AnimeWorld. All Rights Reserved.
+          &copy; 2025 Book World. All Rights Reserved.
         </p>
       </div>
 

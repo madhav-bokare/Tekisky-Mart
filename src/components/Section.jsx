@@ -1,123 +1,75 @@
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
-import "../CSS/Section.css"
+import "../CSS/Section.css";
 
-const Section = ({ query, fetchedAnime, defaultAnimeData }) => {
-  // === Combine All Data ===
-  const allAnime = useMemo(() => [
-    ...defaultAnimeData.mostPopular,
-    ...defaultAnimeData.mostLike,
-    ...defaultAnimeData.popularMovies,
-    ...(defaultAnimeData.recommendedSeries || []),
-    ...(defaultAnimeData.recommendedMovies || []),
-    ...fetchedAnime,
-  ], [fetchedAnime, defaultAnimeData]);
-
-  // === Search Logic ===
-  const searchResults = query
-    ? allAnime.filter((anime) =>
-      anime.name?.toLowerCase().includes(query.toLowerCase())
-    )
-    : [];
+const Section = ({ query = "", fetchedBook = [], paidBook = [] }) => {
+  // === Combine Free + Paid books ===
+  const allBooks = useMemo(() => [...fetchedBook, ...paidBook], [fetchedBook, paidBook]);
 
   // === Split categories ===
-  const mostPopular = [
-    ...defaultAnimeData.mostPopular,
-    ...fetchedAnime.filter((a) => a.category === "mostPopular"),
-  ];
-  const mostLike = [
-    ...defaultAnimeData.mostLike,
-    ...fetchedAnime.filter((a) => a.category === "mostLike"),
-  ];
-  const popularMovies = [
-    ...defaultAnimeData.popularMovies,
-    ...fetchedAnime.filter((a) => a.category === "popularMovies"),
-  ];
+  const Entertainment = allBooks.filter(b => b.category?.toLowerCase() === "entertainment");
+  const History = allBooks.filter(b => b.category?.toLowerCase() === "history");
+  const Emotional = allBooks.filter(b => b.category?.toLowerCase() === "emotional");
 
-  const recommendedSeries = defaultAnimeData.recommendedSeries || [];
-  const recommendedMovies = defaultAnimeData.recommendedMovies || [];
+  // === Search logic ===
+  const searchResults = query
+    ? allBooks.filter(b => b.title?.toLowerCase().includes(query.toLowerCase()))
+    : [];
 
-  // === Helper to render cards ===
+  // === Card render function ===
   const renderCards = (items) => (
     <div className="card-container">
-      {items.map((item, i) => (
-        <div key={i} className="card">
-          <Link to={`/anime/${encodeURIComponent(item.name)}`}>
-            <img src={item.img} alt={item.name} />
+      {items.map(item => (
+        <div key={item._id} className="card">
+          {/* Link to detail page */}
+          <Link
+            to={item.link === "paid" ? `/paid-book/${encodeURIComponent(item.title)}` : `/book/${encodeURIComponent(item.title)}`}
+          >
+            <img src={item.img || "/default.jpg"} alt={item.title} />
           </Link>
 
-          <p className="anime-name">{item.name}</p>
+          <p className="book-name">{item.title}</p>
+
+          {/* Paid book details */}
+          {item.link === "paid" && (
+            <>
+              <p className="book-price">₹{item.price}</p>
+              <Link to={`/paid-book/${encodeURIComponent(item.title)}`}>
+                <button className="buy-btn">Buy Now</button>
+              </Link>
+            </>
+          )}
         </div>
       ))}
     </div>
   );
 
-  // === When query present → Show search results ===
+  // === Search results view ===
   if (query) {
     return (
       <section className="section search-section">
         <h2>Search Results</h2>
-        {searchResults.length > 0 ? (
-          renderCards(searchResults)
-        ) : (
-          <p>No results found</p>
-        )}
+        {searchResults.length > 0 ? renderCards(searchResults) : <p>No results found</p>}
       </section>
     );
   }
 
-  // === Otherwise show all normal sections ===
+  // === Normal category sections ===
   return (
     <>
-      {/* Recommended Series */}
-      <section className="auto-slide-section">
-  <h2 className="cardHeading">Recommended Series</h2>
-  <div className="auto-slide-container">
-    <div className="auto-slide-track">
-      {recommendedSeries.concat(recommendedSeries).map((item, i) => (
-        <div key={i} className="card">
-          <Link to={`/anime/${encodeURIComponent(item.name)}`}>
-            <img className="card-img" src={item.img} alt={item.name} />
-          </Link>
-          <p className="anime-name">{item.name}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-<section className="auto-slide-section">
-  <h2 className="cardHeading">Recommended Movies</h2>
-  <div className="auto-slide-container">
-    <div className="auto-slide-track">
-      {recommendedMovies.concat(recommendedMovies).map((item, i) => (
-        <div key={i} className="card">
-          <Link to={`/anime/${encodeURIComponent(item.name)}`}>
-            <img className="card-img" src={item.img} alt={item.name} />
-          </Link>
-          <p className="anime-name">{item.name}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-      {/* Most Popular */}
       <section>
-        <h2 className="cardHeading">Most Popular</h2>
-        {renderCards(mostPopular)}
+        <h2 className="cardHeading">Entertainment</h2>
+        {renderCards(Entertainment)}
       </section>
 
-      {/* Most Like */}
       <section>
-        <h2 className="cardHeading">Most Like</h2>
-        {renderCards(mostLike)}
+        <h2 className="cardHeading">History</h2>
+        {renderCards(History)}
       </section>
 
-      {/* Popular Movies */}
       <section>
-        <h2 className="cardHeading">Popular Movies</h2>
-        {renderCards(popularMovies)}
+        <h2 className="cardHeading">Emotional</h2>
+        {renderCards(Emotional)}
       </section>
     </>
   );

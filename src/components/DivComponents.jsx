@@ -2,86 +2,91 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "../CSS/DivComponents.css";
-import Navbar from "./Navbar.jsx"
+import Navbar from "./Navbar.jsx";
 
 const DivComponents = () => {
-  const { animeName } = useParams();
-  const [anime, setAnime] = useState(null);
+  const { title } = useParams();
+  const [book, setBook] = useState(null);
   const [error, setError] = useState("");
 
+  // ===== MOBILE SCROLL FIX =====
   useEffect(() => {
-    const fetchAnime = async () => {
+    const handleTouchStart = () => {
+      // optional logic
+    };
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart, { passive: true });
+    };
+  }, []);
+
+  // ===== FETCH BOOK =====
+  useEffect(() => {
+    const fetchBook = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/anime/name/${encodeURIComponent(animeName)}`
+          `http://localhost:5000/api/book/title/${encodeURIComponent(title)}`
         );
-        setAnime(res.data);
+        setBook(res.data);
         setError("");
       } catch (err) {
         console.error(err);
-        setError("Anime not found");
-      }``
-    };
-
-    fetchAnime();
-  }, [animeName]);
-
-  const convertDriveUrl = (url) => {
-    if (!url) return "";
-    if (url.includes("drive.google.com")) {
-      // extract ID from Google Drive link
-      const match = url.match(/\/d\/([^/]+)\//);
-      if (match && match[1]) {
-        return `https://drive.google.com/file/d/${match[1]}/preview`;
+        setError("Book not found");
       }
-    }
-    return url;
-  };
+    };
+    fetchBook();
+  }, [title]);
 
   if (error) return <p className="error">{error}</p>;
-  if (!anime) return <p className="loading">Loading...</p>;
+  if (!book) return <p className="loading">Loading...</p>;
 
   return (
-     <>
-        <Navbar/>
+    <>
+      <Navbar />
 
-    <div className="anime-details">
-      <div className="anime-header">
-        <img src={anime.img} alt={anime.name} className="anime-image" />
-        <div className="anime-info">
-          <h1 className="anime-info-h">{anime.name}</h1>
-          <p className="anime-info-p">Category: {anime.category}</p>
+      <div className="book-details">
+        {/* ===== Book Header ===== */}
+        <div className="book-header">
+          <img src={book.img} alt={book.title} className="book-image" />
+
+          <div className="book-info">
+            <h1 className="book-info-h">{book.title}</h1>
+            <p className="book-info-p">Category: {book.category}</p>
+            <p className="book-info-p">
+              Type: <strong>{book.link === "free" ? "Free" : "Paid"}</strong>
+            </p>
+
+            {book.content && (
+              <a
+                href={book.content}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="read-btn"
+              >
+                 Open in Full Screen
+              </a>
+            )}
+          </div>
+        </div>
+
+        {/* ===== PDF Viewer ===== */}
+        <div className="book-content">
+          <h2>Book Content</h2>
+          {book.content && (
+            <iframe
+              src={book.content}
+              title={book.title}
+            ></iframe>
+          )}
+        </div>
+
+        {/* ===== Back Button FIXED ===== */}
+        <div className="back-btn-container">
+          <Link to="/" className="back-home">
+            ⬅ Back to Home
+          </Link>
         </div>
       </div>
-
-      <div className="anime-videos">
-        <h2 className="anime-videos-h">Episodes</h2>
-        {anime.videos && anime.videos.length > 0 ? (
-          <div className="video-grid">
-            {anime.videos.map((v, index) => (
-              <div key={index} className="video-card">
-                <h3>{v.title}</h3>
-                <iframe
-                  src={convertDriveUrl(v.videoUrl)}
-                  title={v.title}
-                  className="anime-video"
-                  allow="autoplay; fullscreen; encrypted-media"
-                  allowFullScreen
-                />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p>No videos available</p>
-        )}
-      </div>
-
-      <div className="back-btn-container">
-        <Link to="/" className="back-home">
-          ⬅ Back to Home
-        </Link>
-      </div>
-    </div>
     </>
   );
 };

@@ -1,101 +1,141 @@
-/* Mobile Phones */
-@media (max-width: 430px){
+/* ===== MOBILE PHONES ===== */
+@media (max-width: 430px) {
 
-     .logo{
-        font-size: 18px!important;
-      }
-    .search-container{
-       margin: auto;
-        width: auto!important;
-}
- .nav-links,
+  /* Logo small */
+  .logo {
+    font-size: 18px !important;
+  }
+
+  /* Hide desktop navbar links */
+  .nav-links,
   .more-box {
     display: none !important;
   }
-    .navbar {
-    padding: 12px 20px;
-    gap: 15px;
+
+  /* Hide desktop navbar */
+  .navbar {
+    display: none;
   }
-   
-   .menu-icon-bottom {
+
+  /* Show mobile navbar */
+  .navbar-mobile {
     display: flex;
-    align-items: center;
-    justify-content: center;
   }
-  .cardHeading{
-    font-size: 20px!important;
+
+  /* Card / Book content adjustments */
+  .cardHeading {
+    font-size: 20px !important;
   }
-   .card img{
+
+  .card img {
     width: 120px;
     height: auto;
   }
-  .card{
+
+  .card {
     width: 150px;
     height: auto;
-  } 
-  .auto-slide-section{
-   display: flex;
-}
-.auto-slide-section{
-  display: block;
-  width: auto;
-}
-.card-img{
-width: 150px!important;
-height: 150px!important;
-}
-.back-btn-container{
-  width: 200px;
-  display: flex;
-  margin: auto;
-}
-.back-home{
-  font-size: 12px!important;
-  margin: auto;
-}
-.anime-details{
-  display: block;
-}
-.anime-image{
-  width: 55%!important;
-  height: auto!important;
-}
-.anime-info-h{
-  font-size: 25px!important;
-}
-.anime-info-p{
-  font-size: 16px!important;
-}
-.anime-videos{
-  display: block!important;
-}
-.anime-videos-h{
-  font-size: 25px!important;
-}
-.video-card{
-  width: auto!important;
-  height: auto!important;
-}
-.anime-video{
-  width: 100%!important;
-  height: auto!important;
-}
+  }
+
+  .auto-slide-section {
+    display: block;
+    width: auto;
+  }
+
+  .card-img {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .back-btn-container {
+    width: 200px;
+    display: flex;
+    margin: auto;
+  }
+  .book-name,.book-price,.buy-btn{
+    margin-right: 18%;
+  }
+
+  .back-home {
+    font-size: 12px !important;
+    margin: auto;
+  }
+
+  .book-details {
+    display: block;
+  }
+
+  .book-image {
+    width: 55% !important;
+    height: auto !important;
+  }
+
+  .book-info-h {
+    font-size: 20px !important;
+  }
+
+  .book-info-p {
+    font-size: 16px !important;
+  }
 }
 
-/* Tablets */
-@media (max-width: 820px){
- .nav-links,
+/* ===== TABLETS ===== */
+@media (min-width: 431px) and (max-width: 932px) {
+  .navbar {
+    display: flex;
+  }
+    .book-info-h {
+    font-size: 20px !important;
+  }
+  .nav-links,
   .more-box {
-    display: none !important;
+    display: flex !important;
   }
-  .anime-details{
-  display: block;
-}
+
+  .navbar-mobile {
+    display: none;
+  }
+
+  .book-details {
+    display: block;
+  }
 }
 
-@media (min-width: 430px){
-   .navbar {
-    padding: 12px 20px!important;
-    gap: 15px!important;
+/* ===== LARGE SCREENS ===== */
+@media (min-width: 821px) {
+  .navbar {
+    display: flex;
+    height: 80px!important;
   }
- }
+
+  .nav-links,
+  .more-box {
+    display: flex !important;
+    font-size: large;
+  }
+  .search-container input {
+    width: 200px;
+    margin: auto;
+    left: auto;
+  }
+
+  .navbar-mobile {
+    display: none;
+  }
+}
+@media (min-width: 430px){
+  .navbar{
+    display: none;
+  }
+   .navbar-mobile {
+    display: flex;
+  }
+}
+@media (min-width: 768px){
+  .navbar{
+    display: flex;
+  }
+   .navbar-mobile {
+    display: none;
+  }
+}
