@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/paid-book/:id", "destination": "/index.html" },
+    { "source": "/book/:title", "destination": "/index.html" },
+    { "source": "/free-books", "destination": "/index.html" },
+    { "source": "/paid-books", "destination": "/index.html" }
+  ]
+}

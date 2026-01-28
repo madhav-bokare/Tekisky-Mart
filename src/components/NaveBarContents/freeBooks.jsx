@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import "../NavBarComponentsCss/naveContent.css";
-import Navbar from "../../Navbar.jsx";
+import "./naveContent.css";
+import Navbar from "../Navbar.jsx";
 
 const FreeBooks = () => {
   const [books, setBooks] = useState([]);

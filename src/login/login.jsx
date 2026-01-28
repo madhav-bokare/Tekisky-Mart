@@ -1,3 +1,4 @@
+// LoginSignup.jsx
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +7,7 @@ import "./login.css";
 const LoginSignup = () => {
   const navigate = useNavigate();
 
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +17,7 @@ const LoginSignup = () => {
   const handleSubmit = async () => {
     setMsg("");
 
+    // Validate input
     if (!email || !password || (!isLogin && !name)) {
       setMsg("All fields required");
       return;
@@ -25,26 +27,33 @@ const LoginSignup = () => {
       setLoading(true);
 
       if (isLogin) {
-        const res = await axios.post("http://localhost:4000/api/login", { email, password });
+        // ===== LOGIN =====
+        const res = await axios.post(
+          "  http://localhost:4000/api/login",
+          { email, password } 
+        );
+
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
-        navigate("/", { replace: true }); // redirect to Home
-      }
-      else {
-        // ===== SIGNUP =====
-        const res = await axios.post("http://localhost:4000/api/signup", { name, email, password });
 
-        setMsg(res.data.message); // Show success message
+        navigate("/profile", { replace: true });
+      } else {
+        // ===== SIGNUP =====
+        const res = await axios.post(
+          "  http://localhost:4000/api/signup",
+          { name, email, password } 
+        );
+
+        setMsg(res.data.message);
         setName("");
         setEmail("");
         setPassword("");
 
-        // Switch to login form automatically
+        // Switch to login after signup
         setTimeout(() => setIsLogin(true), 1200);
       }
-
     } catch (err) {
-      setMsg(err.response?.data?.error || "Authentication failed");
+      setMsg(err.response?.data?.error || "Network / Auth Error");
       console.error("Auth Error:", err.response || err.message);
     } finally {
       setLoading(false);
@@ -70,6 +79,7 @@ const LoginSignup = () => {
               placeholder="Your Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              autoComplete="name"
             />
           )}
 
@@ -78,6 +88,7 @@ const LoginSignup = () => {
             placeholder="Your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
           />
 
           <input
@@ -85,21 +96,26 @@ const LoginSignup = () => {
             placeholder="Your Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete={isLogin ? "current-password" : "new-password"}
           />
 
-          <button type="submit" disabled={loading} className="login-button">
+          <button
+            type="submit"
+            disabled={loading}
+            className="login-button"
+          >
             {loading
               ? isLogin
                 ? "Logging in..."
                 : "Signing up..."
               : isLogin
-                ? "Login"
-                : "Signup"}
+              ? "Login"
+              : "Signup"}
           </button>
         </form>
 
         <p className="toggle-text">
-          {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+          {isLogin ? "Don't have an account →" : "Already have an account →"}{" "}
           <span
             className="toggle-btn"
             onClick={() => {

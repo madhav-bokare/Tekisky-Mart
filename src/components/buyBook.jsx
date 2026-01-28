@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import "../css/buyBook.css"
+import "../CSS/buyBook.css";
 
 const PaidBookDetail = () => {
     const { title } = useParams();
     const [book, setBook] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/book/paid`)
+        fetch("http://localhost:5000/api/book/paid")
             .then(res => res.json())
             .then(data => {
                 const found = data.find(
@@ -15,7 +15,10 @@ const PaidBookDetail = () => {
                 );
                 setBook(found);
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err);
+                setBook(null);
+            });
     }, [title]);
 
     if (!book) return <p style={{ textAlign: "center", marginTop: "2rem" }}>Paid book not found</p>;

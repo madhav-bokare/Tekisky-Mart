@@ -3,7 +3,7 @@ import axios from "axios";
 import Navbar from "./components/Navbar.jsx";
 import Section from "./components/Section.jsx";
 import Footer from "./components/Footer.jsx";
-import "./css/Responsive.css"
+import "./CSS/Responsive.css"
 
 const Home = () => {
   const [query, setQuery] = useState("");

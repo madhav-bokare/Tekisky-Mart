@@ -1,58 +1,80 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "./home";
 import LoginSignup from "./login/login.jsx"; 
 import DivComponents from "./components/DivComponents.jsx";
-import FreeBooks from "./components/NaveBarContents/naveBarComponents/freeBooks.jsx";
+import FreeBooks from "./components/NaveBarContents/freeBooks.jsx";
 import PaidBookDetail from "./components/buyBook.jsx";
-import PaidBooks from "./components/NaveBarContents/naveBarComponents/paidBooks.jsx";
+import PaidBooks from "./components/NaveBarContents/paidBooks.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Profile from "./Profile/Profile.jsx";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
-        {/* Login/Signup page */}
+
+        {/* Login */}
         <Route path="/login" element={<LoginSignup />} />
 
-        {/* Home page (protected) */}
-        <Route 
-          path="/" 
+        {/* Home */}
+        <Route
+          path="/"
           element={
             <ProtectedRoute>
               <Home />
             </ProtectedRoute>
-          } 
+          }
         />
 
-        {/* Other protected routes */}
-        <Route 
-          path="/book/:title" 
+        {/* Books */}
+        <Route
+          path="/book/:title"
           element={
             <ProtectedRoute>
               <DivComponents />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/free-books" 
+
+        <Route
+          path="/free-books"
           element={
             <ProtectedRoute>
               <FreeBooks />
             </ProtectedRoute>
-          } 
+          }
         />
-          <Route path="/paid-book/:title" element={<ProtectedRoute><PaidBookDetail/></ProtectedRoute>} />
-        <Route 
-          path="/paid-books" 
+
+        <Route
+          path="/paid-book/:title"
+          element={
+            <ProtectedRoute>
+              <PaidBookDetail />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/paid-books"
           element={
             <ProtectedRoute>
               <PaidBooks />
             </ProtectedRoute>
-          } 
+          }
         />
+        
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

@@ -1,8 +1,7 @@
-// PaidBooks.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import "../NavBarComponentsCss/naveContent.css"; 
-import Navbar from "../../Navbar.jsx";
+import "./naveContent.css"; 
+import Navbar from "../Navbar.jsx";
 
 const PaidBooks = () => {
   const [books, setBooks] = useState([]);
@@ -21,7 +20,7 @@ const PaidBooks = () => {
     fetchBooks();
   }, []);
 
-  // 🔍 Search logic
+  // Search logic
   const searchResults = useMemo(() => {
     if (!query) return books;
     return books.filter(book =>
@@ -42,14 +41,14 @@ const PaidBooks = () => {
           {searchResults.length > 0 ? (
             searchResults.map(book => (
               <div key={book._id} className="book-card">
-                {/* Link to purchase page */}
-                <Link to={`/paid-book/${book._id}`}>
+                {/* Link to purchase page using title */}
+                <Link to={`/paid-book/${encodeURIComponent(book.title)}`}>
                   <img src={book.img} alt={book.title} className="book-img" />
                 </Link>
                 <div className="book-info">
                   <p className="book-title">{book.title}</p>
-                  <p className="book-price">₹{book.price}</p>
-                  <Link to={`/paid-book/${book._id}`}>
+                   <p className="book-price">₹{book.price}</p>
+                  <Link to={`/paid-book/${encodeURIComponent(book.title)}`}>
                     <button className="buy-btn">Buy Now</button>
                   </Link>
                 </div>

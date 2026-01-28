@@ -1,24 +1,19 @@
-/* ========== NAVBAR ========== */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-    background: linear-gradient(
-    90deg,
-    #e9cb89,
-    #60693e,
-    #aee0f6
-  );
-  box-shadow: 0 20px 15px -5px rgba(85, 86, 86, 0.5);
-  height: 60px;
+  background: linear-gradient(90deg, #e9cb89, #b7bb7a, #b2ae74);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  margin-left: 2%;
+  font-size: 1.6rem;
   font-weight: 700;
-  color: rgb(0, 0, 0);
-  margin-left: 20px;
+  color: #000;
 }
 
 .nav-links {
@@ -26,42 +21,64 @@
   gap: 50px;
 }
 
- .nav-links a {
-  color: #000000;
+.nav-links a {
+  color: #000;
   text-decoration: none;
   font-weight: 600;
-  transition: 0.5s;
+  transition: all 0.3s;
 }
 
+.nav-links a:hover {
+  color: #d5d573;
+  text-shadow: 0 0 8px #dbb031;
+}
 
 .active-link {
-  color: #ffffff;
+  color: #fff;
   text-shadow: 0 0 8px #f2e7c7;
-  border-bottom: 5px solid #ffc400;
-}
-
-/* ===== SEARCH BAR ===== */
-.search-container {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
+  border-bottom: 3px solid #ffc400;
 }
 
 .search-container input {
-  width: auto;
-  padding: 8px;
-  border-radius: 10px;
+ width: 140px;
+  padding: 6px 8px;
   border: none;
-   background-color: #9ac0d0;
-  border-bottom: 5px solid #000000;
-  color: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    #7b7335,
+    #7b7335
+  );
+  border-radius: 10px;
+  border-bottom: 3px solid #ffbf0e;
+  font-weight: bold;
+  font-size: medium;
+  color: black;
 }
 
 .search-container input::placeholder {
   color: #000000;
-  padding-left: 10px;
   font-weight: bold;
-  font-size: large;
+}
+
+.search-container input:focus {
+  outline: none;
+  width: 180px;
+  box-shadow: 0 0 5px #ffc400;
+}
+
+.user-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #000000;
+  margin-right: 20px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.user-icon:hover {
+  transform: scale(1.1);
 }
 /* ========== MOBILE NAVBAR ========== */
 .navbar-mobile {
@@ -71,12 +88,20 @@
   gap: 8px;
     background: linear-gradient(
     90deg,
-    #e9cb89,
-    #60693e,
-    #aee0f6
+    #988763,
+    #8f9358,
+    #b2ae74
   );
   box-shadow: 0 20px 15px -5px rgba(22, 102, 118, 0.5);
   border-bottom: 1px solid #000000;
+   position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.mobile-logo{
+  font-size: 15px;
+  font-weight: 700;
+  color: #000;
 }
 
 .mobile-top {
@@ -91,8 +116,8 @@
   border: none;
   background: linear-gradient(
     90deg,
-    #60693e,
-    #57869a
+    #7b7335,
+    #7b7335
   );
   border-radius: 10px;
   border-bottom: 3px solid #ffbf0e;
@@ -124,4 +149,12 @@
 .mobile-links a.active-link {
   color: #ffd70f;
   border-color: #ffd70f;
+}
+.mobile-user-icon{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #000000;
+  object-fit: cover;
+  cursor: pointer;
 }
