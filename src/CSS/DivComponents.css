@@ -41,33 +41,34 @@
 /* === PDF VIEWER SECTION === */
 .book-content {
   margin-top: 20px;
-  border: 1px solid #ccc;
   border-radius: 10px;
   max-height: 800px;
   overflow-y: auto;
   padding: 10px;
-  background: #111;
 }
 
 .book-content iframe {
-  width: 100%;
-  height: 800px;
+  width: 80%;
+  height: 600px;
   border: none;
   border-radius: 10px;
+  display: block;
+  margin: auto;
 }
 
 
-.book-content h2 {
+.book-content-header {
   margin-bottom: 15px;
+  border-left: 4px solid #f7a37c;
   color: #f3bca3;
 }
 
 /* === BACK BUTTON === */
 .back-btn-container {
-  position: fixed;      /* screen pe fix kar diya */
-  bottom: 20px;         /* bottom se distance */
-  right: 20px;           /* right se distance */
-  z-index: 9999;        /* sabse aage */
+  position: fixed;     
+  bottom: 20px;        
+  right: 20px;         
+  z-index: 9999;       
 }
 
 .back-home {
@@ -79,7 +80,7 @@
   font-weight: 450;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* thoda 3D effect */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
 }
 
 .back-home:hover {

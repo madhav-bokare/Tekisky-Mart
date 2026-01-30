@@ -79,7 +79,7 @@
   font-size: 1rem;
 }
 
-.buy-btn {
+.purchase-btn-nav {
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -90,7 +90,7 @@
   transition: background-color 0.3s;
 }
 
-.buy-btn:hover {
+.purchase-btn-nav:hover {
   background-color: #45a049;
 }
 

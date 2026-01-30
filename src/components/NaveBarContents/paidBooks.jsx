@@ -49,7 +49,7 @@ const PaidBooks = () => {
                   <p className="book-title">{book.title}</p>
                    <p className="book-price">₹{book.price}</p>
                   <Link to={`/paid-book/${encodeURIComponent(book.title)}`}>
-                    <button className="buy-btn">Buy Now</button>
+                    <button className="purchase-btn-nav">Purchase</button>
                   </Link>
                 </div>
               </div>

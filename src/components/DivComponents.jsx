@@ -7,20 +7,10 @@ import Navbar from "./Navbar.jsx";
 const DivComponents = () => {
   const { title } = useParams();
   const [book, setBook] = useState(null);
+  const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState("");
 
-  // ===== MOBILE SCROLL FIX =====
-  useEffect(() => {
-    const handleTouchStart = () => {
-      // optional logic
-    };
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    return () => {
-      window.removeEventListener("touchstart", handleTouchStart, { passive: true });
-    };
-  }, []);
-
-  // ===== FETCH BOOK =====
+  // ===== FETCH CURRENT BOOK =====
   useEffect(() => {
     const fetchBook = async () => {
       try {
@@ -29,6 +19,12 @@ const DivComponents = () => {
         );
         setBook(res.data);
         setError("");
+
+        // Fetch suggestions (same type: free/paid, exclude current)
+        const type = res.data.link; // free or paid
+        const sugRes = await axios.get(`http://localhost:5000/api/book/${type}`);
+        const filtered = sugRes.data.filter(b => b._id !== res.data._id);
+        setSuggestions(filtered);
       } catch (err) {
         console.error(err);
         setError("Book not found");
@@ -60,10 +56,10 @@ const DivComponents = () => {
               <a
                 href={book.content}
                 target="_blank"
-                rel="noopener noreferrer"
+               rel="nonowner northerner"
                 className="read-btn"
               >
-                 Open in Full Screen
+                Open in Full Screen
               </a>
             )}
           </div>
@@ -71,14 +67,46 @@ const DivComponents = () => {
 
         {/* ===== PDF Viewer ===== */}
         <div className="book-content">
-          <h2>Book Content</h2>
+          <h2 className="book-content-header">Book Content</h2>
           {book.content && (
-            <iframe
-              src={book.content}
-              title={book.title}
-            ></iframe>
+            <iframe src={book.content} title={book.title}></iframe>
           )}
         </div>
+
+        {/* ===== Suggestions Section ===== */}
+        {suggestions.length > 0 && (
+          <div className="suggestions-section">
+            <h2 className="book-content-header">
+              Other {book.link === "free" ? "Free" : "Paid"} Books
+            </h2>
+
+            <div className="card-container">
+              {suggestions.map(item => (
+                <div key={item._id} className="card">
+                  <Link
+                    to={
+                      item.link === "paid"
+                        ? `/paid-book/${encodeURIComponent(item.title)}`
+                        : `/book/${encodeURIComponent(item.title)}`
+                    }
+                  >
+                    <img src={item.img || "/default.jpg"} alt={item.title} />
+                  </Link>
+
+                  <p className="book-name">{item.title}</p>
+
+                  {item.link === "paid" && (
+                    <Link
+                      to={`/paid-book/${encodeURIComponent(item.title)}`}
+                    >
+                      <button className="buy-btn">Buy Now</button>
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* ===== Back Button FIXED ===== */}
         <div className="back-btn-container">

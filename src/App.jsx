@@ -4,7 +4,7 @@ import Home from "./home";
 import LoginSignup from "./login/login.jsx"; 
 import DivComponents from "./components/DivComponents.jsx";
 import FreeBooks from "./components/NaveBarContents/freeBooks.jsx";
-import PaidBookDetail from "./components/buyBook.jsx";
+import PaidBookDetail from "./components/PaidBookDetail.jsx";
 import PaidBooks from "./components/NaveBarContents/paidBooks.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Profile from "./Profile/Profile.jsx";

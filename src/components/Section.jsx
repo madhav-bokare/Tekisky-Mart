@@ -34,7 +34,7 @@ const Section = ({ query = "", fetchedBook = [], paidBook = [] }) => {
           {item.link === "paid" && (
             <>
               <Link to={`/paid-book/${encodeURIComponent(item.title)}`}>
-                <button className="buy-btn">Buy Now</button>
+                <button className="purchase-btn-nav">Purchase</button>
               </Link>
             </>
           )}
