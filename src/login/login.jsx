@@ -29,7 +29,7 @@ const LoginSignup = () => {
       if (isLogin) {
         // ===== LOGIN =====
         const res = await axios.post(
-          "  http://localhost:4000/api/login",
+          "  https://tekisky-mart-backend-login.onrender.com/api/login",
           { email, password } 
         );
 
@@ -40,7 +40,7 @@ const LoginSignup = () => {
       } else {
         // ===== SIGNUP =====
         const res = await axios.post(
-          "  http://localhost:4000/api/signup",
+          "  https://tekisky-mart-backend-login.onrender.com/api/signup",
           { name, email, password } 
         );
 
