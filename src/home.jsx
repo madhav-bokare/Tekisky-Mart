@@ -18,7 +18,7 @@ const Home = () => {
   // Fetch All Mart Products
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/mart")
+      .get("https://tekisky-mart-backend.onrender.com/api/mart")
       .then((res) => setMarts(res.data))
       .catch((err) => console.error(err));
   }, []);
