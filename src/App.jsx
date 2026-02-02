@@ -1,80 +1,68 @@
 import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
+
 import Home from "./home";
-import LoginSignup from "./login/login.jsx"; 
-import DivComponents from "./components/DivComponents.jsx";
-import FreeBooks from "./components/NaveBarContents/freeBooks.jsx";
-import PaidBookDetail from "./components/PaidBookDetail.jsx";
-import PaidBooks from "./components/NaveBarContents/paidBooks.jsx";
+import LoginSignup from "./login/login.jsx";
+import ProductDetail from "./components/ProductDetail.jsx"; 
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Profile from "./Profile/Profile.jsx";
+import Cart from "./components/Cart.jsx";
+import { CartProvider } from "./components/CartContext.jsx"; 
+import PopularProducts from "./components/popular.jsx";
 
 function App() {
   return (
-    <HashRouter>
-      <Routes>
+    <CartProvider> 
+      <HashRouter>
+        <Routes>
+          <Route path="/login" element={<LoginSignup />} />
 
-        {/* Login */}
-        <Route path="/login" element={<LoginSignup />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/PopularProducts"
+             element={
+              <ProtectedRoute>
+                <PopularProducts />
+              </ProtectedRoute>
+             }
+             />
 
-        {/* Home */}
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/product/:title"
+            element={
+              <ProtectedRoute>
+                <ProductDetail />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* Books */}
-        <Route
-          path="/book/:title"
-          element={
-            <ProtectedRoute>
-              <DivComponents />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/free-books"
-          element={
-            <ProtectedRoute>
-              <FreeBooks />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/paid-book/:title"
-          element={
-            <ProtectedRoute>
-              <PaidBookDetail />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/paid-books"
-          element={
-            <ProtectedRoute>
-              <PaidBooks />
-            </ProtectedRoute>
-          }
-        />
-        
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-
-      </Routes>
-    </HashRouter>
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </HashRouter>
+    </CartProvider>
   );
 }
 

@@ -22,38 +22,10 @@
     display: flex;
   }
 
-  /* Card / Book content adjustments */
-  .cardHeading {
-    font-size: 20px !important;
-  }
-
-  .card img {
-    width: 120px;
-    height: auto;
-  }
-
-  .card {
-    width: 150px;
-    height: auto;
-  }
-
-  .auto-slide-section {
-    display: block;
-    width: auto;
-  }
-
-  .card-img {
-    width: 150px !important;
-    height: 150px !important;
-  }
-
   .back-btn-container {
     width: 200px;
     display: flex;
     margin: auto;
-  }
-  .book-name,.book-price,.buy-btn{
-    margin-right: 18%;
   }
 
   .back-home {
@@ -61,35 +33,12 @@
     margin: auto;
   }
 
-  .book-details {
-    display: block;
-  }
-
-  .book-image {
-    width: 55% !important;
-    height: auto !important;
-  }
-
-  .book-info-h {
-    font-size: 20px !important;
-  }
-
-  .book-info-p {
-    font-size: 16px !important;
-  }
-  .book-content iframe {
-    width: 100%!important;
-    height: 440px!important;
-  }
 }
 
 /* ===== TABLETS ===== */
 @media (min-width: 431px) and (max-width: 932px) {
   .navbar {
     display: flex;
-  }
-    .book-info-h {
-    font-size: 20px !important;
   }
   .nav-links,
   .more-box {
@@ -100,9 +49,6 @@
     display: none;
   }
 
-  .book-details {
-    display: block;
-  }
 }
 
 /* ===== LARGE SCREENS ===== */
@@ -157,10 +103,6 @@
     width: 35px !important;
     height: 35px !important;
 }
- .book-content iframe {
-    width: 80%!important;
-    height: 850px!important;
-  }
 }
 @media (min-width: 360px) {
   .mobile-links a {
@@ -174,10 +116,6 @@
   .nav-links {
     gap: 50px!important;
   }
-   .book-content iframe {
-    width: 60%!important;
-    height: 700px!important;
-  }
 }
 @media (min-width: 912px) {
   .nav-links {
@@ -189,7 +127,7 @@
     font-size: 15px!important;
   }
   .mobile-links a {
-    font-size: 13px!important;
+    font-size: 15px!important;
     font-weight: 700!important;
   }
 }

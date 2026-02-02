@@ -2,154 +2,126 @@
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-background-image: url("https://e1.pxfuel.com/desktop-wallpaper/882/364/desktop-wallpaper-paper-power-point-backgrounds-paper-power-point-old-paper.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #f8f9fa;
 }
 
-/* ========== SECTION (Default Sections) ========== */
+/* ========== SECTION ========== */
 section {
-  margin-top: 7%;
-  padding-left: 7%;
+  margin-top: 4%;
+  padding: 0 6%;
 }
 
-h2 {
-  font-size: 25px;
-  font-weight: bold;
-  color: #000000;
-  margin-bottom: 15px;
-  border-left: 4px solid rgb(0, 0, 0);
-  padding-left: 10px;
+/* ========== SECTION HEADING ========== */
+.cardHeading {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 18px;
+  border-left: 4px solid #2563eb;
+  padding-left: 12px;
 }
 
-/* ========== CARD CONTAINER (Horizontal Scroll) ========== */
+/* ========== CARD CONTAINER ========== */
 .card-container {
-  display: flex;
-  overflow-x: auto;
-  gap: 8%;
-  padding: 20px 10px;
-  scroll-behavior: smooth;
-  justify-content: flex-start;
-}
-
-/* Scrollbar Styling */
-.card-container::-webkit-scrollbar {
-  height: 8px;
-}
-
-.card-container::-webkit-scrollbar-thumb {
-  background-color: rgb(255, 251, 0);
-  border-radius: 10px;
-}
-
-.card-container::-webkit-scrollbar-track {
-  background: transparent;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Desktop */
+  gap: 18px;
 }
 
 /* ========== CARD ========== */
 .card {
-  flex: 0 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px;
   text-align: center;
-  overflow: hidden;
-  background: transparent;
-  border: none;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.card-link {
-  text-decoration: none;
-  color: inherit;
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
+/* ========== IMAGE (FIXED & CLEAN) ========== */
 .card img {
   width: 100%;
-  height: 300px;
-  border-radius: 12px;
-  object-fit: cover;
-  background: transparent;
-  display: block;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  height: 180px;            /* ✅ Desktop balanced */
+  object-fit: contain;     /* ✅ FULL product visible */
+  border-radius: 10px;
+  background: #f9fafb;
 }
 
-.card:hover img {
-  transform: scale(1.05);
-}
-
-/* ========== BOOK NAME BELOW IMAGE ========== */
-.book-name {
-  margin-top: 10px;
+/* ========== PRODUCT NAME & PRICE ========== */
+.product-name {
+  margin-top: 8px;
+  font-size: 15px;
   font-weight: 600;
-  color: #000000;
-  font-size: 1rem;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  color: #111827;
 }
 
-.card:hover .book-name {
-  color: #5a4b03;
-  /* text-shadow: 0 0 10px #ffd70f; */
+.product-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #16a34a;
+  margin: 6px 0;
 }
 
-/* ===== AUTO SLIDE SECTION (Recommended only) ===== */
-.auto-slide-section {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto; 
-   text-align: left;
+/* ========== BUTTON ========== */
+.buy-now-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
 }
 
-.auto-slide-section .cardHeading {
-  
-  font-size: 25px;
-  color: #9b9898;
-  margin-bottom: 40px;
-  padding: 0 15px 8px 15px;
+.buy-now-btn:hover {
+  background: #1e40af;
 }
 
-.auto-slide-container {
-  overflow: hidden;
-  width: 80%;
-  position: relative;
-  border-radius: 10px;
-}
-
-.auto-slide-track {
-  display: flex;
-  gap: 15px;
-  animation: moveSlide 25s linear infinite;
-  width: max-content;
-}
-
-.auto-slide-section .card {
-  min-width: 200px;
-  border-radius: 10px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.auto-slide-section .card img {
-  width: 90%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-
-.auto-slide-section .card:hover img {
-  transform: scale(1.05);
-}
-
-.auto-slide-section .book-name {
-  text-align: center;
-  color: white;
-  margin-top: 5px;
-}
-
-/* ===== Smooth continuous motion (Recommended only) ===== */
-@keyframes moveSlide {
-  0% {
-    transform: translateX(0);
+/* ===== Responsive: Mobile ===== */
+@media (max-width: 768px) {
+  .slider img {
+    width: 50%;
+    height: 200px;
   }
-  100% {
-    transform: translateX(-50%);
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* ===== Tablet ===== */
+@media (max-width: 1024px) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .card img {
+    height: 160px;     /* ✅ Tablet perfect */
+  }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card img {
+    height: 150px;
+  }
+}
+
+/* ===== Small Mobile ===== */
+@media (max-width: 480px) {
+  section {
+    padding: 0 4%;
+  }
+
+  .card img {
+    height: 140px;
   }
 }

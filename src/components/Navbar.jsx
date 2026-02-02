@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../CSS/Navbar.css";
 import UserLogo from "../images/UserLogo.png";
+import CartLogo from "../images/cartLogo.png";
 
 
 const Navbar = ({ setQuery = () => {} }) => {
@@ -11,23 +12,17 @@ const Navbar = ({ setQuery = () => {} }) => {
     <>
     {/* Desktop / Tablet Links */}
    <nav className="navbar">
-  <div className="logo">✦ Books Library</div>
+  <div className="logo">✦ Tekisky Mart</div>
   
     <div className="nav-links">
       <Link to="/" className={location.pathname === "/" ? "active-link" : ""}>
         Home
       </Link>
       <Link
-        to="/free-books"
-        className={location.pathname === "/free-books" ? "active-link" : ""}
+        to="/PopularProducts"
+        className={location.pathname === "/PopularProducts" ? "active-link" : ""}
       >
-        Free Books
-      </Link>
-      <Link
-        to="/paid-books"
-        className={location.pathname === "/paid-books" ? "active-link" : ""}
-      >
-        Paid Books
+        Populars
       </Link>
     </div>
 
@@ -38,7 +33,12 @@ const Navbar = ({ setQuery = () => {} }) => {
         onChange={(e) => setQuery(e.target.value)}
       />
     </div>
-
+     <Link
+      to="/cart"
+      className={location.pathname === "/cart" ? "active-link" : ""}
+    >
+      <img src={CartLogo} alt="Cart" className="user-icon" />
+    </Link>
     <Link
       to="/profile"
       className={location.pathname === "/profile" ? "active-link" : ""}
@@ -47,44 +47,32 @@ const Navbar = ({ setQuery = () => {} }) => {
     </Link>
 </nav>
 {/* Mobile Navbar */}
-      <nav className="navbar-mobile">
-      <div className="mobile-top">
-        <div className="mobile-logo">✦ Books Library</div>
-        <div className="mobile-search-container">
-          <input
-            type="search"
-            placeholder="Search..."
-            onChange={(e) => setQuery(e.target.value)}
-          />
-        </div>
-        <Link
-        to="/profile"
-         className={location.pathname === "/profile" ? "active-link" : ""}
-       >
-        <img src={UserLogo} alt="Profile" className="mobile-user-icon" />
-       </Link>
-      </div>
+  <nav className="navbar-mobile">
+  <div className="mobile-top">
+    {/* Logo */}
+    <div className="mobile-logo">✦Tekisky Mart</div>
 
-      {/* Buttons row: Free / Paid */}
-      <div className="mobile-links">
-  
-          <Link to="/" className={location.pathname === "/" ? "active-link" : ""}>
-            Home
-          </Link>
-        <Link
-          to="/free-books"
-          className={location.pathname === "/free-books" ? "active-link" : ""}
-        >
-          Free Books
-        </Link>
-        <Link
-          to="/paid-books"
-          className={location.pathname === "/paid-books" ? "active-link" : ""}
-        >
-          Paid Books
-        </Link>
-      </div>
-    </nav>
+    {/* Right Icons */}
+    <div className="mobile-icons">
+      <Link to="/cart">
+        <img src={CartLogo} alt="Cart" className="mobile-icon" />
+      </Link>
+       <Link to="/profile">
+        <img src={UserLogo} alt="Profile" className="mobile-icon" />
+      </Link>
+    </div>
+  </div>
+
+  {/* Search bar */}
+  <div className="mobile-search-container">
+    <input
+      type="search"
+      placeholder="Search for sarees, t-shirts & more"
+      onChange={(e) => setQuery(e.target.value)}
+    />
+  </div>
+</nav>
+
     </>
   );
 };
