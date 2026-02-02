@@ -17,12 +17,12 @@ const ProductDetail = () => {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/mart/title/${encodeURIComponent(title)}`
+          `https://tekisky-mart-backend.onrender.com/api/mart/title/${encodeURIComponent(title)}`
         );
 
         setProduct(res.data);
 
-        const all = await axios.get("http://localhost:5000/api/mart");
+        const all = await axios.get("https://tekisky-mart-backend.onrender.com/api/mart");
 
         const related = all.data.filter(
           (item) =>
