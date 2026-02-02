@@ -14,7 +14,7 @@ const PopularProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/mart");
+        const res = await fetch("https://tekisky-mart-backend.onrender.com/api/mart");
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const data = await res.json();
         setProducts(data);
