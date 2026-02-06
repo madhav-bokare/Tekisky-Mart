@@ -61,10 +61,6 @@
   margin-bottom: 5px;
 }
 
-.product-price {
-  color: #393939;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .popular-card {
