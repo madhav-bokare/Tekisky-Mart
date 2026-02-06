@@ -14,12 +14,17 @@ const LoginSignup = () => {
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // ✅ NEW: success / error flag
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const handleSubmit = async () => {
     setMsg("");
+    setIsSuccess(false); // reset
 
     // Validate input
     if (!email || !password || (!isLogin && !name)) {
       setMsg("All fields required");
+      setIsSuccess(false);
       return;
     }
 
@@ -29,8 +34,8 @@ const LoginSignup = () => {
       if (isLogin) {
         // ===== LOGIN =====
         const res = await axios.post(
-          "  https://tekisky-mart-backend-login.onrender.com/api/login",
-          { email, password } 
+          "https://tekisky-mart-backend-login.onrender.com/api/login",
+          { email, password }
         );
 
         localStorage.setItem("token", res.data.token);
@@ -40,11 +45,14 @@ const LoginSignup = () => {
       } else {
         // ===== SIGNUP =====
         const res = await axios.post(
-          "  https://tekisky-mart-backend-login.onrender.com/api/signup",
-          { name, email, password } 
+          "https://tekisky-mart-backend-login.onrender.com/api/signup",
+          { name, email, password }
         );
 
-        setMsg(res.data.message);
+        // ✅ SUCCESS MESSAGE (GREEN)
+        setMsg("Signup successful");
+        setIsSuccess(true);
+
         setName("");
         setEmail("");
         setPassword("");
@@ -53,7 +61,9 @@ const LoginSignup = () => {
         setTimeout(() => setIsLogin(true), 1200);
       }
     } catch (err) {
+      // ❌ ERROR MESSAGE (RED)
       setMsg(err.response?.data?.error || "Network / Auth Error");
+      setIsSuccess(false);
       console.error("Auth Error:", err.response || err.message);
     } finally {
       setLoading(false);
@@ -65,7 +75,12 @@ const LoginSignup = () => {
       <div className="login-box">
         <h2>{isLogin ? "Login" : "Signup"}</h2>
 
-        {msg && <p className="msg">{msg}</p>}
+        {/* ✅ COLOR CONTROLLED MESSAGE */}
+        {msg && (
+          <p className={isSuccess ? "msg success" : "msg error"}>
+            {msg}
+          </p>
+        )}
 
         <form
           onSubmit={(e) => {
@@ -121,6 +136,7 @@ const LoginSignup = () => {
             onClick={() => {
               setIsLogin(!isLogin);
               setMsg("");
+              setIsSuccess(false);
               setName("");
               setEmail("");
               setPassword("");
