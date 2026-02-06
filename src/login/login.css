@@ -87,7 +87,14 @@
 .toggle-text{
  cursor: pointer;
 }
+.msg.success {
+  color: #16a34a;
+}
 
+/* 🔴 Error */
+.msg.error {
+  color: #dc2626;
+}
 /* Responsive design */
 @media (max-width: 480px) {
   .login-box {
