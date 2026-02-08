@@ -1,6 +1,7 @@
 import React from "react";
 import { useCart } from "./CartContext.jsx";
 import Navbar from "./Navbar.jsx";
+import { Link } from "react-router-dom";
 import "../CSS/cart.css"; 
 
 const Cart = () => {
@@ -34,6 +35,11 @@ const Cart = () => {
           Buy Now
         </button>
       </div>
+    </div>
+        <div className="back-button">
+              <Link to="/" className="back-name">
+                ⬅ Back to Home
+              </Link>
     </div>
     </>
   );
