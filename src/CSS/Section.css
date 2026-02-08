@@ -81,6 +81,23 @@ section {
 .buy-now-btn:hover {
   background: #1e40af;
 }
+.slider-section {
+  width: 80%;
+  margin-bottom: 30px;
+  margin-top: 4%;
+  padding: 0 6%;
+}
+
+.slider-img {
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 80%;
+  height: 350px;
+  /* object-fit: contain;   */
+  border-radius: 12px;
+  /* transition: opacity 0.5s ease; */
+}
+
 
 /* ===== Responsive: Mobile ===== */
 @media (max-width: 768px) {
@@ -100,7 +117,7 @@ section {
   }
 
   .card img {
-    height: 160px;     /* ✅ Tablet perfect */
+    height: 160px;   
   }
 }
 
@@ -123,5 +140,10 @@ section {
 
   .card img {
     height: 140px;
+  }
+  .slider-img {
+    height: 200px;
+    width: 117%;
+    margin: auto;
   }
 }
