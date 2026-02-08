@@ -13,7 +13,7 @@ const Section = ({ query = "", products = [] }) => {
   // 🔥 ONLY SLIDER BANNERS
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/mart/slider")
+      .get("https://tekisky-mart-backend.onrender.com/api/mart/slider")
       .then((res) => setSliderImgs(res.data))
       .catch((err) => console.error(err));
   }, []);
