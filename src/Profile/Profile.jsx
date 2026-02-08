@@ -105,6 +105,11 @@ const Profile = () => {
           )}
         </div>
       </div>
+        <div className="back-button">
+              <Link to="/" className="back-name">
+                ⬅ Back to Home
+              </Link>
+    </div>
     </>
   );
 };
